@@ -12,7 +12,7 @@ export class WebSocketService {
    elementsGroup:any = [];
    id : any;
    messages= []
-
+   puntos=0;
 
   constructor() { 
     this.socket = io(this.url);
@@ -22,7 +22,7 @@ export class WebSocketService {
  //inicialización
     this.socket.on('connect', ()=>{
       console.log("conectado")
-      this.socket.emit('create', {top:20, left:20, img:'../assets/img/Vaca.png'})
+      this.socket.emit('create', {top:20, left:20, img:'../assets/img/Vaca.png', puntos:0, nombre:'', lmsg:''})
       })
   //recibe la lista de elementos
       this.socket.on('lista',(lista) => {
@@ -45,7 +45,6 @@ export class WebSocketService {
   //recibe actualizaciones
     this.socket.on('updatec', (lista)=>{
       this.elementsGroup = lista;
-      console.log(this.elementsGroup);
     })
 
     //recibe mensajes
@@ -67,6 +66,9 @@ export class WebSocketService {
   }
   public mensajear = (mes)=>{
     this.emit('message', mes)
+  }
+  public changeName =(nombre) => {
+    this.emit('changeName', {id:this.socket.id, nombre:nombre})
   }
 
 }

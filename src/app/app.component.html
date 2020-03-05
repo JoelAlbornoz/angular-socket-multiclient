@@ -1,11 +1,41 @@
-<input type='text' (keydown)="checkKey($event)" [(ngModel)]='input'>
-
+<input type='text' (keydown)="checkKey($event)" [(ngModel)]='input' placeholder="mensaje">
+<input type='text' (keydown)="checkKeyName($event)" [(ngModel)]='nombre' placeholder="nombre">
 <button (click)=cambImg(vaca)>Vaca</button>
 <button (click)=cambImg(juan)>Juan</button>
 <button (click)=cambImg(bandidos)>Bandidos</button>
 <button (click)=cambImg(fd)>fd</button>
 <!--<button (click)=socket.reset()></button>-->
-<img (click)=socket.mover() *ngFor="let item of socket.elementsGroup" [ngStyle]="{'position':'absolute','width':'50px', 'height':'50px', 'top':item.top +'px', 'left':item.left +'px'}" src={{item.img}} > 
+<div *ngFor="let item of socket.elementsGroup"
+    [ngStyle]="{'position':'absolute','width':'50px', 'height':'50px', 'top':item.top +'px', 'left':item.left +'px'}">
+    <p class="element">{{item.lmsg}}</p>
+    <img (click)=socket.mover() [ngStyle]="{'width':'50px', 'height':'50px'}" src={{item.img}}>
+    <p style="font-weight: bold;">{{item.nombre}}</p>
+    <p>puntos: {{item.puntos}}</p>
+</div>
 <div [ngStyle]="{'background-color': '#CCC', 'width':'30vw', 'height':'24vh'}">
-<p *ngFor='let item of socket.messages'>{{item}}</p>
+    <p *ngFor='let item of socket.messages'>{{item.nombre}} : {{item.mensaje}}</p>
+</div>
+<br><br>
+<button (click)='comprando = !comprando'>Comprar</button>
+<div *ngIf='!comprando'>
+    <div style="display: flex;"><button (click)='toggleComp("p")'>P</button>
+        <p>-50 puntos-</p>
+        <div *ngIf='compItem.p'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+    </div>
+    <div style="display: flex;"><button (click)='toggleComp("a")'>A</button>
+        <p>-100 puntos-</p>
+        <div *ngIf='compItem.a'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+    </div>
+    <div style="display: flex;"><button (click)='toggleComp("h1")'>H1</button>
+        <p>-150 puntos-</p>
+        <div *ngIf='compItem.h1'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+    </div>
+    <div style="display: flex;"><button (click)='toggleComp("img")'>IMG</button>
+        <p>-200 puntos-</p>
+        <div *ngIf='compItem.img'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+    </div>
+    <div style="display: flex;"><button (click)='toggleComp("div")'>DIV</button>
+        <p>-400 puntos-</p>
+        <div *ngIf='compItem.div'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+    </div>
 </div>
