@@ -1,4 +1,9 @@
-<h1>Working</h1>
-<input (keydown)="checkKey($event)">
+<input type='text' (keydown)="checkKey($event)" [(ngModel)]='input'>
+<button (click)=cambColor(rojo)>Rojo</button>
+<button (click)=cambColor(azul)>Azul</button>
+<button (click)=cambColor(rosa)>Rosa</button>
 <!--<button (click)=socket.reset()></button>-->
 <div (click)=socket.mover() *ngFor="let item of socket.elementsGroup" [ngStyle]="{'position':'absolute','background-color': item.color, 'width':'50px', 'height':'50px', 'top':item.top +'px', 'left':item.left +'px'  }" > {{item.id}}</div>
+<div [ngStyle]="{'background-color': '#CCC', 'width':'30vw', 'height':'24vh'}">
+<p *ngFor='let item of socket.messages'>{{item}}</p>
+</div>

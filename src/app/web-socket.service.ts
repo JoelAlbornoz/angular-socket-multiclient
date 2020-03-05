@@ -11,6 +11,7 @@ export class WebSocketService {
    socket : any;
    elementsGroup:any = [];
    id : any;
+   messages= []
 
 
   constructor() { 
@@ -47,6 +48,11 @@ export class WebSocketService {
       console.log(this.elementsGroup);
     })
 
+    //recibe mensajes
+    this.socket.on('sendmes', (data)=>{
+      console.log('recibido:' +data)
+      this.messages= data;
+    })
   }
   emit = (event, data) => {
     this.socket.emit(event, data);
@@ -59,5 +65,9 @@ export class WebSocketService {
   public mover = (dir) =>{
     this.emit('update', {dir: dir,id:this.id});
   }
+  public mensajear = (mes)=>{
+    this.emit('message', mes)
+  }
+
 }
 
