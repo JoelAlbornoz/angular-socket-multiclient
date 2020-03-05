@@ -8,9 +8,11 @@ import { WebSocketService } from './web-socket.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  rojo= 'red'
-  azul='blue'
-  rosa='pink'
+  bandidos= '../assets/img/Bandidos.png'
+  fd= '../assets/img/fd.png'
+  juan= '../assets/img/Juan.png'
+  vaca= '../assets/img/Vaca.png'
+  
   title = 'angular-socket-multiclient';
   input="s";
   socket:any;
@@ -18,8 +20,8 @@ export class AppComponent {
     this.socket = socket;
   }
 
-    cambColor(val){
-      this.socket.emit("changeColor", {id:this.socket.id, color: val})
+    cambImg(val){
+      this.socket.emit("changeImg", {id:this.socket.id, img: val})
       console.log(val)
     }
     mensaje(){

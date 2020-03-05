@@ -22,7 +22,7 @@ export class WebSocketService {
  //inicialización
     this.socket.on('connect', ()=>{
       console.log("conectado")
-      this.socket.emit('create', {top:20, left:20, color:'red'})
+      this.socket.emit('create', {top:20, left:20, img:'../assets/img/Vaca.png'})
       })
   //recibe la lista de elementos
       this.socket.on('lista',(lista) => {
