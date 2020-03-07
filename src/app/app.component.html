@@ -20,22 +20,26 @@
 <div *ngIf='!comprando'>
     <div style="display: flex;"><button (click)='toggleComp("p")'>P</button>
         <p>-50 puntos-</p>
-        <div *ngIf='compItem.p'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+        <div *ngIf='compItem.p'><input placeholder="Texto" type="text" [(ngModel)]='htmlToAdd.p'><button (click)='send("p", htmlToAdd.p)'>Confirmar</button></div><br>
     </div>
     <div style="display: flex;"><button (click)='toggleComp("a")'>A</button>
         <p>-100 puntos-</p>
-        <div *ngIf='compItem.a'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+        <div *ngIf='compItem.a'><input placeholder="https://tupagina.com" type="text" [(ngModel)]='htmlToAdd.a'><button (click)='send("a", htmlToAdd.a)'>Confirmar</button></div><br>
     </div>
     <div style="display: flex;"><button (click)='toggleComp("h1")'>H1</button>
         <p>-150 puntos-</p>
-        <div *ngIf='compItem.h1'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+        <div *ngIf='compItem.h1'><input placeholder="Texto" type="text" [(ngModel)]='htmlToAdd.h1'><button (click)='send("h1", htmlToAdd.h1)'>Confirmar</button></div><br>
     </div>
     <div style="display: flex;"><button (click)='toggleComp("img")'>IMG</button>
         <p>-200 puntos-</p>
-        <div *ngIf='compItem.img'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+        <div *ngIf='compItem.img'><input placeholder="Img URL" type="text" [(ngModel)]='htmlToAdd.img'><button (click)='send("img", htmlToAdd.img)'>Confirmar</button></div><br>
     </div>
     <div style="display: flex;"><button (click)='toggleComp("div")'>DIV</button>
         <p>-400 puntos-</p>
-        <div *ngIf='compItem.div'><input placeholder="Html" type="text" [(ngModel)]='htmlToAdd'><button>Confirmar</button></div><br>
+        <div *ngIf='compItem.div'><input placeholder="HTML" type="text" [(ngModel)]='htmlToAdd.div'><button (click)='send("div", htmlToAdd.div)'>Confirmar</button></div><br>
     </div>
+    
+</div>
+<div *ngFor="let item of this.socket.htmlEls" [innerHTML]='item | safe :"html"' >
+
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation  } from '@angular/core';
 import { WebSocketService } from './web-socket.service'
 import { HostListener } from '@angular/core';
 
@@ -8,7 +8,8 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./app.component.css'],
   host: {
     '(document:keydown)': 'handleKeyboardEvent($event)'
-  }
+  },
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class AppComponent {
@@ -25,7 +26,7 @@ export class AppComponent {
   title = 'angular-socket-multiclient';
   input = "";
   compItem = { p: false, img: false, div: false, a: false, h1: false };
-  htmlToAdd = '';
+  htmlToAdd = {p:'',div:'',img:'',h1:'',a:''};
   socket: any;
   comprando = true;
 
@@ -83,6 +84,9 @@ export class AppComponent {
     }
     this.compItem[val] = !this.compItem[val];
   };
-
+  send(arg, text){
+    this.socket.append({id:this.socket.id,el:arg,html:text})
+    this.htmlToAdd = {p:'',div:'',img:'',h1:'',a:''};
+  }
 }
 

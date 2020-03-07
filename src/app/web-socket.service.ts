@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵɵresolveBody } from '@angular/core';
 import * as io from 'socket.io-client'
 
 
@@ -11,6 +11,7 @@ export class WebSocketService {
    socket : any;
    elementsGroup:any = [];
    id : any;
+   htmlEls =[]
    messages= []
    puntos=0;
 
@@ -52,6 +53,12 @@ export class WebSocketService {
       console.log('recibido:' +data)
       this.messages= data;
     })
+    //recibe html
+    this.socket.on('updateHTML', (data)=>{
+      console.log(data);
+      this.htmlEls.push(data)
+     
+    })
   }
   emit = (event, data) => {
     this.socket.emit(event, data);
@@ -70,6 +77,11 @@ export class WebSocketService {
   public changeName =(nombre) => {
     this.emit('changeName', {id:this.socket.id, nombre:nombre})
   }
+  public append(data){
+    this.emit('addEl', data);
+  }
 
+ 
+ 
 }
 
