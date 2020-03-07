@@ -12,7 +12,7 @@ export class WebSocketService {
    elementsGroup:any = [];
    id : any;
    htmlEls =[]
-   messages= []
+   messages= [{nombre:'administrador', mensaje:'intenta moverte con las flechas'},{nombre:'administrador', mensaje:'puedes comprar elementos html con tus puntos'}]
    puntos=0;
 
   constructor() { 
@@ -23,7 +23,7 @@ export class WebSocketService {
  //inicialización
     this.socket.on('connect', ()=>{
       console.log("conectado")
-      this.socket.emit('create', {top:20, left:20, img:'../assets/img/Vaca.png', puntos:0, nombre:'', lmsg:''})
+      this.socket.emit('create', {top:20, left:20, img:'../assets/img/vaca.png', puntos:0, nombre:'', lmsg:''})
       })
   //recibe la lista de elementos
       this.socket.on('lista',(lista) => {

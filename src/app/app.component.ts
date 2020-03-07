@@ -18,10 +18,7 @@ export class AppComponent {
   }
 
 
-  bandidos = '../assets/img/Bandidos.png'
-  fd = '../assets/img/fd.png'
-  juan = '../assets/img/Juan.png'
-  vaca = '../assets/img/Vaca.png'
+
   nombre = ''
   title = 'angular-socket-multiclient';
   input = "";
@@ -30,13 +27,15 @@ export class AppComponent {
   socket: any;
   comprando = true;
 
-
+  imagenes_curso= ['agustin', 'nico', 'lucas', 'joaquin', 'lucio', 'simon', 'profe', 'joel', 'carlos', 'gustavo', 'ayelen', 'martin']
+  imagenes_pebetines=['croko','niyux','kamina','fd','gaston','igna','joel','chino','gio']
+  imagenes = ['male','female','vaca']
   constructor(socket: WebSocketService = new WebSocketService) {
     this.socket = socket;
   }
 
   cambImg(val) {
-    this.socket.emit("changeImg", { id: this.socket.id, img: val })
+    this.socket.emit("changeImg", { id: this.socket.id, img: '../assets/img/'+ val })
     console.log(val)
   }
   mensaje() {

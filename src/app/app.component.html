@@ -1,9 +1,14 @@
-<input type='text' (keydown)="checkKey($event)" [(ngModel)]='input' placeholder="mensaje">
-<input type='text' (keydown)="checkKeyName($event)" [(ngModel)]='nombre' placeholder="nombre">
-<button (click)=cambImg(vaca)>Vaca</button>
-<button (click)=cambImg(juan)>Juan</button>
-<button (click)=cambImg(bandidos)>Bandidos</button>
-<button (click)=cambImg(fd)>fd</button>
+<button  *ngFor="let item of imagenes"(click)="cambImg(item + '.png')" class="btn btn-primary" style='padding: 5px; margin-left: 20px; margin-right: auto;'>{{item}}</button>
+<input type='text' (keydown)="checkKey($event)" [(ngModel)]='input' placeholder="mensaje" class="form-control">
+<input type='text' (keydown)="checkKeyName($event)" [(ngModel)]='nombre' placeholder="nombre" class="form-control">
+<div *ngIf= 'nombre==="cursoayi2020"'>
+<br>
+<button  *ngFor="let item of imagenes_curso"(click)="cambImg(item + '.png')" class="btn btn-success">{{item}}</button>
+</div>
+<div *ngIf= 'nombre==="secret"'>
+<br>
+<button  *ngFor="let item of imagenes_pebetines"(click)="cambImg(item + '.png')" class="btn btn-danger">{{item}}</button>
+</div>
 <!--<button (click)=socket.reset()></button>-->
 <div *ngFor="let item of socket.elementsGroup"
     [ngStyle]="{'position':'absolute','width':'50px', 'height':'50px', 'top':item.top +'px', 'left':item.left +'px'}">
@@ -13,7 +18,7 @@
     <p>puntos: {{item.puntos}}</p>
 </div>
 <div [ngStyle]="{'background-color': '#CCC', 'width':'30vw', 'height':'24vh'}">
-    <p *ngFor='let item of socket.messages'>{{item.nombre}} : {{item.mensaje}}</p>
+    <p *ngFor='let item of socket.messages' class="font-italic">{{item.nombre}} : {{item.mensaje}}</p>
 </div>
 <br><br>
 <button (click)='comprando = !comprando'>Comprar</button>
