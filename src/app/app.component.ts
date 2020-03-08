@@ -35,7 +35,7 @@ export class AppComponent {
   }
 
   cambImg(val) {
-    this.socket.emit("changeImg", { id: this.socket.id, img: '../assets/img/'+ val })
+    this.socket.emit("changeImg", { id: this.socket.id, img: 'https://raw.githubusercontent.com/JoelAlbornoz/angular-socket-multiclient/master/src/assets/img/'+ val })
     console.log(val)
   }
   mensaje() {
